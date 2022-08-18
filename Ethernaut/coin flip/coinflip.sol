@@ -24,7 +24,7 @@ contract CoinFlipBreaker {
         task_contract.flip(side);
     }
 
-    function transfer() public payable {}
+    // function transfer() public payable {}
 
 }
 
