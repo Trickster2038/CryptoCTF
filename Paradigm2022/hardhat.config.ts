@@ -2,7 +2,7 @@
 // dotenv.config(); // load env vars from .env
 import { task, HardhatUserConfig } from "hardhat/config";
 // import "@nomiclabs/hardhat-waffle";
-// import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-ethers";
 // import "@tenderly/hardhat-tenderly";
 // import "./tasks/index";
 
@@ -54,6 +54,7 @@ const config: HardhatUserConfig = {
   mocha: {
     timeout: 300 * 1e3,
   },
+  defaultNetwork: "ctf"
   // tenderly: {
   //   username: process.env.TENDERLY_USERNAME!,
   //   project: process.env.TENDERLY_PROJECT!,
