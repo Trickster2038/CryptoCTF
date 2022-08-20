@@ -10,7 +10,7 @@ export const deployOrGetAt = async (
   ...deployArgs: any[]
 ) => {
   
-  console.log("network: " + hre.network.name)
+  // console.log("network: " + hre.network.name)
   let factory: ContractFactory;
   factory = await hre.ethers.getContractFactory(contract, eoa);
   let c: Contract;
@@ -26,6 +26,7 @@ export const getEoaOrPrivateKey = async (privateKey: string) => {
 
   console.log("Provider: " + ethers2.getDefaultProvider())
   const eoa = new ethers2.Wallet(privateKey, ethers2.getDefaultProvider());
+  // const eoa = new hre.ethers.getSigner()
   // ethers2.getDefaultProvider(ethers2.providers.getNetwork("ctf")));
   return eoa;
 };

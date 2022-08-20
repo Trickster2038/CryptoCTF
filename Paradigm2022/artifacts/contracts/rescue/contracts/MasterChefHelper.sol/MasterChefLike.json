@@ -1,0 +1,45 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MasterChefLike",
+  "sourceName": "contracts/rescue/contracts/MasterChefHelper.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "poolInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "lpToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "allocPoint",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastRewardBlock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "accSushiPerShare",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

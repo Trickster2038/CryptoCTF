@@ -3,12 +3,12 @@
 import { task, HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-ethers";
 
-const accounts = {
+const accounts2 = {
   // derive accounts from mnemonic, see tasks/create-key
   mnemonic: `test test test test test test test test test test test junk`,
 };
 
-const URL = `http://34.66.135.107:8545/7a01dd3b-2e84-4da2-9ec8-f87b355aaa0e`;
+const URL = `http://34.123.187.206:8545/ecd85bbc-95bd-4873-b8ec-c2a716df555e`;
 
 // Go to https://hardhat.org/config/ to learn more
 const config: HardhatUserConfig = {
@@ -21,13 +21,15 @@ const config: HardhatUserConfig = {
       { version: "0.6.12" },
       { version: "0.7.0" },
       { version: "0.8.0" },
+      { version: "0.8.7" },
       { version: "0.8.15" },
+      { version: "0.8.16" },
     ],
   },
   networks: {
     ctf: {
       url: URL,
-      accounts,
+      accounts: [`0x2ab02d753c07d5194bb4eccde74ce308c9e8ea00104e70ba975d4250d4141f98`]
     },
     // hardhat: {
     //   accounts,
