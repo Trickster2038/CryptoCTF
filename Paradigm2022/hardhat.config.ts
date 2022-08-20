@@ -1,17 +1,7 @@
 // import dotenv from "dotenv";
 // dotenv.config(); // load env vars from .env
 import { task, HardhatUserConfig } from "hardhat/config";
-// import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-ethers";
-// import "@tenderly/hardhat-tenderly";
-// import "./tasks/index";
-
-// const { ARCHIVE_URL } = process.env;
-
-// if (!ARCHIVE_URL)
-//   throw new Error(
-//     `ARCHIVE_URL env var not set. Copy .env.template to .env and set the env var`
-//   );
 
 const accounts = {
   // derive accounts from mnemonic, see tasks/create-key
@@ -55,10 +45,6 @@ const config: HardhatUserConfig = {
     timeout: 300 * 1e3,
   },
   defaultNetwork: "ctf"
-  // tenderly: {
-  //   username: process.env.TENDERLY_USERNAME!,
-  //   project: process.env.TENDERLY_PROJECT!,
-  // },
 };
 
 export default config;
