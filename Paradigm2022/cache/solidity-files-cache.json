@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/gwynbleidd/Рабочий стол/CryptoCTF/Paradigm2022/contracts/random/contracts/Random.sol": {
+      "lastModificationDate": 1660961500322,
+      "contentHash": "5d53d0a96802859608e9b91317cb8852",
+      "sourceName": "contracts/random/contracts/Random.sol",
+      "solcConfig": {
+        "version": "0.8.15",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.15"
+      ],
+      "artifacts": [
+        "Random"
+      ]
+    },
+    "/home/gwynbleidd/Рабочий стол/CryptoCTF/Paradigm2022/contracts/random/contracts/Setup.sol": {
+      "lastModificationDate": 1660961500322,
+      "contentHash": "0df443c39d0c231311c5a95b5ade9fb8",
+      "sourceName": "contracts/random/contracts/Setup.sol",
+      "solcConfig": {
+        "version": "0.8.15",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./Random.sol"
+      ],
+      "versionPragmas": [
+        "0.8.15"
+      ],
+      "artifacts": [
+        "Setup"
+      ]
+    }
+  }
+}
