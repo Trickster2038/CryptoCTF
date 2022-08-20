@@ -18,7 +18,7 @@ const accounts = {
   mnemonic: `test test test test test test test test test test test junk`,
 };
 
-const URL = ` http://34.66.135.107:8545/cd9dbd6c-a81f-49e8-95c0-cac7cf67542e`;
+const URL = `http://34.66.135.107:8545/7a01dd3b-2e84-4da2-9ec8-f87b355aaa0e`;
 
 // Go to https://hardhat.org/config/ to learn more
 const config: HardhatUserConfig = {
@@ -47,9 +47,9 @@ const config: HardhatUserConfig = {
     //     blockNumber: 11800000
     //   },
     // },
-    // local: {
-    //   url: "http://127.0.0.1:8545",
-    // },
+    local: {
+      url: "http://127.0.0.1:8545",
+    },
   },
   mocha: {
     timeout: 300 * 1e3,

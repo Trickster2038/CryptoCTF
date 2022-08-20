@@ -13,11 +13,11 @@ export const deployOrGetAt = async (
   eoa: Signer,
   ...deployArgs: any[]
 ) => {
-  // console.log(hre.network.name)
+  console.log(hre.network.name)
   let factory: ContractFactory;
   // const {ethers} = hre;
   // factory = await hre.ethers.getContractFactory(contract, eoa);
-  factory = await hre.ethers.getContractFactory("Setup");
+  factory = await hre.ethers.getContractFactory(contract, eoa);
   let c: Contract;
   // if (hre.network.name === `hardhat`) {
   //   c = await factory.deploy(...deployArgs);
@@ -42,7 +42,10 @@ export const getEoaOrPrivateKey = async (privateKey: string) => {
   //   const [eoa] = await ethers.getSigners();
   //   return eoa;
   // } else {
-    const eoa = new ethers2.Wallet(privateKey, ethers2.getDefaultProvider(ethers2.providers.getNetwork("ctf")));
+    console.log("Provider: " + ethers2.getDefaultProvider())
+    const eoa = new ethers2.Wallet(privateKey, ethers2.getDefaultProvider());
+      // ethers2.getDefaultProvider(ethers2.providers.getNetwork("ctf")));
+
     return eoa;
   // }
 };
