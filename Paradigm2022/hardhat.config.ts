@@ -8,7 +8,7 @@ const accounts2 = {
   mnemonic: `test test test test test test test test test test test junk`,
 };
 
-const URL = `http://34.123.187.206:8545/ecd85bbc-95bd-4873-b8ec-c2a716df555e`;
+const URL = `http://34.123.187.206:8545/a927442f-a311-43c6-b18e-13fae9189c38`;
 
 // Go to https://hardhat.org/config/ to learn more
 const config: HardhatUserConfig = {
@@ -29,7 +29,8 @@ const config: HardhatUserConfig = {
   networks: {
     ctf: {
       url: URL,
-      accounts: [`0x2ab02d753c07d5194bb4eccde74ce308c9e8ea00104e70ba975d4250d4141f98`]
+      loggingEnabled: true,
+      accounts: [`0x143988c8e6f559f99713a0777ce2bfa0e620f61eac8ca15dcfe6c31fc79af077`]
     },
     // hardhat: {
     //   accounts,

@@ -3,6 +3,7 @@
 pragma solidity 0.8.16;
 
 import "./UniswapV2Like.sol";
+import "hardhat/console.sol";
 
 interface ERC20Like {
     function transferFrom(address, address, uint) external;
@@ -26,6 +27,7 @@ contract MasterChefHelper {
     UniswapV2RouterLike public constant router = UniswapV2RouterLike(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);
 
     function swapTokenForPoolToken(uint256 poolId, address tokenIn, uint256 amountIn, uint256 minAmountOut) external {
+        console.log(">>>>> gg");
         (address lpToken,,,) = masterchef.poolInfo(poolId);
         address tokenOut0 = UniswapV2PairLike(lpToken).token0();
         address tokenOut1 = UniswapV2PairLike(lpToken).token1();

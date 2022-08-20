@@ -74,8 +74,8 @@
       ]
     },
     "/home/gwynbleidd/Рабочий стол/CryptoCTF/Paradigm2022/contracts/rescue/contracts/MasterChefHelper.sol": {
-      "lastModificationDate": 1660997574870,
-      "contentHash": "2a02cfeee42d04cf93b62eb48cc2a064",
+      "lastModificationDate": 1661033884915,
+      "contentHash": "1f9f0c80ce03f3712fe3f6820d30823a",
       "sourceName": "contracts/rescue/contracts/MasterChefHelper.sol",
       "solcConfig": {
         "version": "0.8.16",
@@ -101,7 +101,8 @@
         }
       },
       "imports": [
-        "./UniswapV2Like.sol"
+        "./UniswapV2Like.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "0.8.16"
@@ -368,6 +369,41 @@
       ],
       "artifacts": [
         "Context"
+      ]
+    },
+    "/home/gwynbleidd/Рабочий стол/CryptoCTF/Paradigm2022/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1660962382374,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.16",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }

